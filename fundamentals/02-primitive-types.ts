@@ -13,7 +13,15 @@ let subtitle = "Learn the basics of Typescript"
 
 const fullTitle = title + ": " + subtitle;
 
+const fullTitle2 = `Full Title - ${title}: ${subtitle}`;
+
+const greeting = `Welcome to ${fullTitle}!`;
+
 console.log("fullTitle =", fullTitle);
+console.log("greeting =", greeting);
+console.log(fullTitle2);
+
+
 
 // primitive types: boolean
 let published = false;
