@@ -22,11 +22,18 @@ console.log("greeting =", greeting);
 console.log(fullTitle2);
 
 
-
 // primitive types: boolean
 let published = false;
 
 if (published) {
     console.log("The lesson is published.");
-
 }
+
+// primitive types: Object
+let course:object = {
+    title:"Typescript",
+    subtitle:"Learn the basics of Typescript",
+    lessonCount:10,
+}
+
+console.log("type of course is" + typeof course);
