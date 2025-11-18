@@ -21,5 +21,12 @@ var course = {
     title: "Typescript",
     subtitle: "Learn the basics of Typescript",
     lessonCount: 10,
+    //nested object
+    author: {
+        firstName: "John",
+        lastName: "Doe"
+    }
 };
 console.log("type of course is" + typeof course);
+// console.log("course =", course);
+console.log("author:", course.author.firstName + " " + course.author.lastName);
