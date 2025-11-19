@@ -1,23 +1,25 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 // primitive types: number
-var lessonCount = 10;
-var total = lessonCount + 10;
+const lessonCount = 10;
+const total = lessonCount + 10;
 console.log("total =", total);
 // primitive types: string
-var title = "Typescript";
-var subtitle = "Learn the basics of Typescript";
-var fullTitle = title + ": " + subtitle;
-var fullTitle2 = "Full Title - ".concat(title, ": ").concat(subtitle);
-var greeting = "Welcome to ".concat(fullTitle, "!");
+let title = "Typescript";
+let subtitle = "Learn the basics of Typescript";
+const fullTitle = title + ": " + subtitle;
+const fullTitle2 = `Full Title - ${title}: ${subtitle}`;
+const greeting = `Welcome to ${fullTitle}!`;
 console.log("fullTitle =", fullTitle);
 console.log("greeting =", greeting);
 console.log(fullTitle2);
 // primitive types: boolean
-var published = false;
+let published = false;
 if (published) {
     console.log("The lesson is published.");
 }
 // primitive types: Object
-var course = {
+let course = {
     title: "Typescript",
     subtitle: "Learn the basics of Typescript",
     lessonCount: 10,
@@ -30,3 +32,4 @@ var course = {
 console.log("type of course is" + typeof course);
 // console.log("course =", course);
 console.log("author:", course.author.firstName + " " + course.author.lastName);
+//# sourceMappingURL=02-primitive-types.js.map
