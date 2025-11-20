@@ -1,12 +1,13 @@
 
-let course ={
-    title: "TS Bootcamp"
-}
+let course = null
 
-let title = null;
+// const title = course.textField?.title ?? "No Title Found";
 
-console.log("title =" + title);
+// console.log("title =" + title);
 
-if (course.title) {
-    console.log(`Title is ${course.title}`);
+const title = course?.textField?.title ?? "No Title Found";
+console.log (title)
+
+if (course?.textField?.title) {
+    console.log(`Title is ${course.textField.title}`);
 }
