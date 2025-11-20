@@ -1,3 +1,5 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var CourseType;
 (function (CourseType) {
     CourseType["FREE"] = "FREE";
@@ -5,7 +7,7 @@ var CourseType;
     CourseType["PRIVATE"] = "PRIVATE";
     CourseType["HIDDEN"] = "HIDDEN";
 })(CourseType || (CourseType = {}));
-var course = {
+const course = {
     title: "Typescript Bootcamp",
     type: CourseType.HIDDEN //This is of enum type, thay vì để sô 3, mình để CourseType.HIDDEN để code dễ đọc hơn
 };
