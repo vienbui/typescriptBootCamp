@@ -1,4 +1,6 @@
-var uniqueIdentifier = 1000;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+let uniqueIdentifier = 1000;
 uniqueIdentifier = 12345;
 console.log("Unique Identifier (number):", uniqueIdentifier);
 uniqueIdentifier = "ABC12345";
@@ -10,7 +12,7 @@ function displayId(id) {
 displayId(67890);
 displayId("XYZ67890");
 // Example with arrays and union types
-var mixedArray = [1, "two", 3, "four", 5];
+let mixedArray = [1, "two", 3, "four", 5];
 console.log("Mixed Array:", mixedArray);
-var courseId = 1000;
+let courseId = 1000;
 courseId = null;

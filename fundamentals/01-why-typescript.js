@@ -5,4 +5,3 @@ printCourseName(courseName);
 function printCourseName(name) {
     console.log("The course name is " + name.toUpperCase());
 }
-//# sourceMappingURL=01-why-typescript.js.map

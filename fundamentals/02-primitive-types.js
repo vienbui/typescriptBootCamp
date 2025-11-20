@@ -32,4 +32,3 @@ let course = {
 console.log("type of course is" + typeof course);
 // console.log("course =", course);
 console.log("author:", course.author.firstName + " " + course.author.lastName);
-//# sourceMappingURL=02-primitive-types.js.map
