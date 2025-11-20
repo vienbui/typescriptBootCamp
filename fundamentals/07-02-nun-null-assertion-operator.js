@@ -1,0 +1,2 @@
+var courseId;
+courseId.toString();
