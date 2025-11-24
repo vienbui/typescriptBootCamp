@@ -5,7 +5,7 @@ export {};
 export type Course = {
     title: string;
     subtitle: string;
-    lessonCount: number;
+    lessonCount?: number;
 }
 
 export const PAGE_SIZE = 100;
