@@ -49,6 +49,7 @@
     "escape-html": "^1.0.3",
     "etag": "^1.8.1",
     "eventemitter3": "^4.0.7",
+    "express": "^5.2.0",
     "fill-range": "^7.1.1",
     "finalhandler": "^1.1.0",
     "follow-redirects": "^1.15.11",
@@ -131,9 +132,7 @@
     "yargs": "^17.7.2",
     "yargs-parser": "^21.1.1"
   },
-  "devDependencies": {},
   "scripts": {
-
     "start": "lite-server"
   },
   "keywords": [],

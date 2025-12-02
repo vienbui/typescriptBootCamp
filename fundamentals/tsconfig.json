@@ -2,9 +2,10 @@
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
     // File Layout
-    // "rootDir": "./src",
+    "rootDir": "./src",
     "outDir": "./dist",
     "moduleResolution": "bundler",
+    "baseUrl": "src",
     // "allowImportingTsExtensions": true,
 
 
@@ -44,6 +45,9 @@
     "moduleDetection": "force",
     "skipLibCheck": true,
   },
-  "include": ["./**/*.ts"]
+  "include": ["./src/**/*.ts"],
+  "files": [
+    "src/12-module-imports.ts"
+  ]
 
 }
