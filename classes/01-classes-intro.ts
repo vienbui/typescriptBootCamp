@@ -1,21 +1,31 @@
+import type { HasId, HasTitle } from "./02-interfaces";
+import { CourseService } from "./03-singleon";
 
-class Course{
+abstract class Course implements HasTitle {
 
    private static TOTAL_COURSES = 0;
    static readonly TYPESCRIPT_TITLE = "TypeScript Basics";
 
     constructor(
-       private _title:string,
-       private price:number,
-        private subtitle = "",
-       private creationDate = new Date (2025,11,1)
+        public id:string,
+       protected  _title:string,
+       protected price:number,
+        protected subtitle = "",
+       protected creationDate = new Date (2025,11,1)
     ) {
 
         this.validatePrice();
+
+        const service = CourseService.instance();
+
         Course.TOTAL_COURSES++;
        }
+
+       printId() {
+        console.log(`Course ID is: ${this.id}`);
+       }
     
-       validatePrice(){
+       protected  validatePrice(){
         console.log("Called Course validatiePrice ()");
         if(this.price <= 0){
             throw "Price must be larger than 0"
@@ -45,11 +55,12 @@ class Course{
 }
 
 class FreeCourse extends Course {
-    constructor(
-        _title:string,
-         subtitle = "",
+     constructor(
+        id:string,
+        title:string,
+        subtitle = "",
         creationDate = new Date (2025,11,1)){
-        super(_title,0,subtitle,creationDate);
+        super(id, title,0,subtitle,creationDate);
        }
        validatePrice(){
                 console.log("Called FreeCourse validatiePrice ()");
@@ -57,15 +68,13 @@ class FreeCourse extends Course {
 
     }
 
-const typeScript = new Course(Course.TYPESCRIPT_TITLE, 100);
+// const typeScript = new Course(Course.TYPESCRIPT_TITLE, 100);
 
-const angular = new FreeCourse(
-    "Angular Basics" 
-    );
+const angular = new FreeCourse("1", "Angular Basics");
 
-    
+  CourseService.instance();
   
-console.log(typeScript.title);
+// console.log(typeScript.title);
 console.log(angular.title);
 // console.log(`Total courses: ${Course.TOTAL_COURSES}`);
 console.log(angular)
