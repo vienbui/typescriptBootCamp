@@ -8,7 +8,6 @@
     "baseUrl": "src",
     // "allowImportingTsExtensions": true,
 
-
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
     "module": "ESNext",
