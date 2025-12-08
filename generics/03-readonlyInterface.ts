@@ -20,4 +20,4 @@ const frozen = freezeCourse({
     lessonsCount: 100
 })
 
-frozen.title = "New title"; // Error: Cannot assign to 'title' because it is a read-only property.
+// frozen.title = "New title"; // Error: Cannot assign to 'title' because it is a read-only property.
