@@ -7,14 +7,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const _02_method_decorator_1 = require("./02-method-decorator");
-class DbService {
+const _03_class_decorator_1 = require("./03-class-decorator");
+let DbService = class DbService {
     saveData(data) {
         console.log("saving data in the database");
     }
-}
+};
 __decorate([
     (0, _02_method_decorator_1.Perf)(),
     (0, _02_method_decorator_1.Log)(_02_method_decorator_1.LoggingLevel.DEBUG)
 ], DbService.prototype, "saveData", null);
+DbService = __decorate([
+    (0, _03_class_decorator_1.SealClass)()
+], DbService);
 const db = new DbService();
 db.saveData({ hello: "World " });
+Object.defineProperty(DbService, "say hello", {
+    value: () => {
+        console.log("Hello World from DbService");
+    }
+});
