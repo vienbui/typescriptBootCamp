@@ -1,0 +1,12 @@
+{
+  "name": "rest-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start-server": "node dist/server.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "description": ""
+}
