@@ -13,6 +13,7 @@ console.log(process.env.PORT)
 import * as express from 'express';
 import { root } from './routes/root';
 import { isInteger } from './ultils';
+import { logger } from "./logger";
 
 const app = express();
 
@@ -39,7 +40,7 @@ function startServer() {
     }
 
     app.listen(port, () => {
-        console.log(`v1 HTTP REST API server is now running at http://localhost:${port}`)
+        logger.info(`v1 HTTP REST API server is now running at http://localhost:${port}`)
     })
 };
 

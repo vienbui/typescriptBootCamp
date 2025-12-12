@@ -10,6 +10,7 @@ console.log(process.env.PORT);
 var express = require("express");
 var root_1 = require("./routes/root");
 var ultils_1 = require("./ultils");
+var logger_1 = require("./logger");
 var app = express();
 function setupExpress() {
     app.route("/").get(root_1.root);
@@ -28,7 +29,7 @@ function startServer() {
         port = 9000;
     }
     app.listen(port, function () {
-        console.log("v1 HTTP REST API server is now running at http://localhost:".concat(port));
+        logger_1.logger.info("v1 HTTP REST API server is now running at http://localhost:".concat(port));
     });
 }
 ;
