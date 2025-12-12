@@ -5,7 +5,7 @@
     "clean": "rm -rf dist",
     "build": "tsc",
     "start-server": "node dist/server.js",
-    "start-dev-server": "tsc-watch --onSuccess \"node dist/server.js\"",
+    "start-dev-server": "tsc-watch --onSuccess \"node dist/server.js 9002\"",
     "dev": "npm-run-all clean build start-dev-server"
   },
   "author": "",
@@ -19,6 +19,7 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
+    "dotenv": "^17.2.3",
     "express": "^5.2.1",
     "rimraf": "^5.0.10"
   }
