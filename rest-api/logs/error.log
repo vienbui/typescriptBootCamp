@@ -1,0 +1,9 @@
+{
+    "code": "ENOTFOUND",
+    "errno": -3008,
+    "hostname": "postgres",
+    "level": "error",
+    "message": "Error during Data Source initialization: getaddrinfo ENOTFOUND postgres",
+    "stack": "Error: getaddrinfo ENOTFOUND postgres\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:107:26)",
+    "syscall": "getaddrinfo"
+}

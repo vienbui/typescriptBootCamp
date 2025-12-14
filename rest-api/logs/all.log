@@ -2,3 +2,52 @@
     "level": "info",
     "message": "v1 HTTP REST API server is now running at http://localhost:9002"
 }
+{
+    "level": "info",
+    "message": "v1 HTTP REST API server is now running at http://localhost:9002"
+}
+{
+    "level": "info",
+    "message": "v1 HTTP REST API server is now running at http://localhost:9002"
+}
+{
+    "level": "info",
+    "message": "v1 HTTP REST API server is now running at http://localhost:9002"
+}
+{
+    "level": "info",
+    "message": "v1 HTTP REST API server is now running at http://localhost:3000"
+}
+{
+    "level": "info",
+    "message": "v1 HTTP REST API server is now running at http://localhost:3000"
+}
+{
+    "level": "info",
+    "message": "v1 HTTP REST API server is now running at http://localhost:3000"
+}
+{
+    "level": "info",
+    "message": "v1 HTTP REST API server is now running at http://localhost:3000"
+}
+{
+    "level": "info",
+    "message": "v1 HTTP REST API server is now running at http://localhost:3000"
+}
+{
+    "level": "info",
+    "message": "v1 HTTP REST API server is now running at http://localhost:3000"
+}
+{
+    "level": "info",
+    "message": "v1 HTTP REST API server is now running at http://localhost:3000"
+}
+{
+    "code": "ENOTFOUND",
+    "errno": -3008,
+    "hostname": "postgres",
+    "level": "error",
+    "message": "Error during Data Source initialization: getaddrinfo ENOTFOUND postgres",
+    "stack": "Error: getaddrinfo ENOTFOUND postgres\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:107:26)",
+    "syscall": "getaddrinfo"
+}

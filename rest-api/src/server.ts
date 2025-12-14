@@ -14,37 +14,52 @@ import * as express from 'express';
 import { root } from './routes/root';
 import { isInteger } from './ultils';
 import { logger } from "./logger";
+import { pool, testConnection } from "./database";
+
+
+
+dotenv.config();
 
 const app = express();
+const port = Number(process.env.APP_PORT || process.env.PORT || 3000);
 
-function setupExpress(){
-    app.route ("/").get(root);
+// global error handlers để log mọi lỗi không bắt
+process.on("uncaughtException", (err) => {
+  console.error("uncaughtException:", err);
+});
+process.on("unhandledRejection", (reason) => {
+  console.error("unhandledRejection:", reason);
+});
+
+// middlewares
+app.use(express.json());
+
+// test route
+app.get("/", (req, res) => res.json({ ok: true, message: "hello" }));
+
+app.get("/db-test", async (req, res) => {
+  console.log("/db-test hit");
+  try {
+    const r = await pool.query("SELECT NOW() as now");
+    res.json({ ok: true, now: r.rows[0] });
+  } catch (err) {
+    console.error("/db-test error:", err);
+    res.status(500).json({ ok: false, error: String(err) });
+  }
+});
+
+async function start() {
+  try {
+    console.log("Calling testConnection()");
+    await testConnection(); // đảm bảo DB ok trước khi listen
+    // bind 0.0.0.0 để nếu chạy trong container vẫn reachable từ host
+    app.listen(port, "0.0.0.0", () => {
+      console.log(`Server running and listening at http://0.0.0.0:${port}`);
+    });
+  } catch (err) {
+    console.error("Failed to start server:", err);
+    process.exit(1);
+  }
 }
 
-function startServer() {
-    let port:number ;
-
-    const portEnv = process.env.PORT
-    const portArg = process.argv[2];
-
-    if (isInteger(portEnv)) {
-        port = parseInt(portEnv!);
-    }
-  
-    if (!port && isInteger(portArg)) { // neu chua co port tu env thi kiem tra arg
-        port = parseInt(portArg!);
-    }
-
-    if (!port) {
-        port = 9000;
-    }
-
-    app.listen(port, () => {
-        logger.info(`v1 HTTP REST API server is now running at http://localhost:${port}`)
-    })
-};
-
-setupExpress();
-
-
-startServer();
+start();
