@@ -1,6 +1,5 @@
 import { Pool } from "pg";
 import * as dotenv from "dotenv";
-import { Course } from "./models/course";
 
 dotenv.config();
 
