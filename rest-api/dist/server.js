@@ -36,84 +36,80 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllCourses = getAllCourses;
 var dotenv = require("dotenv");
+var express = require("express");
+var root_1 = require("./routes/root");
+var get_all_course_1 = require("./routes/get-all-course");
+var database_1 = require("./database");
+var logger_1 = require("./logger");
+// Load environment variables
 var result = dotenv.config();
 if (result.error) {
-    console.log('Error loading environment variables from .env file, aborting...');
+    logger_1.logger.error('Error loading environment variables, aborting.');
     process.exit(1);
 }
-console.log(process.env.PORT);
-var express = require("express");
-var database_1 = require("./database");
-function getAllCourses() {
-    return __awaiter(this, void 0, void 0, function () {
-        var result;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, database_1.pool.query("SELECT * FROM courses ORDER BY seq_no")];
-                case 1:
-                    result = _a.sent();
-                    return [2 /*return*/, result.rows];
-            }
-        });
-    });
-}
-var app = express();
-var port = Number(process.env.APP_PORT || process.env.PORT || 3000);
-// global error handlers để log mọi lỗi không bắt
-process.on("uncaughtException", function (err) {
-    console.error("uncaughtException:", err);
-});
-process.on("unhandledRejection", function (reason) {
-    console.error("unhandledRejection:", reason);
-});
-// middlewares
-app.use(express.json());
-// test route
-app.get("/", function (req, res) { return res.json({ ok: true, message: "hello" }); });
-app.get("/db-test", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var r, err_1;
+// Constants for ports
+var ROOT_APP_PORT = Number(process.env.ROOT_APP_PORT || 3000);
+var COURSE_APP_PORT = Number(process.env.COURSE_APP_PORT || 9000);
+// Initialize express apps separately
+var rootApp = express();
+var courseApp = express();
+// Middlewares
+rootApp.use(express.json());
+courseApp.use(express.json());
+// Define routes explicitly
+rootApp.get('/', root_1.root);
+courseApp.get('/api/courses', get_all_course_1.getAllCourses);
+// Additional route for DB test
+rootApp.get("/db-test", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var result_1, error_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                console.log("/db-test hit");
+                logger_1.logger.info("/db-test hit");
                 _a.label = 1;
             case 1:
                 _a.trys.push([1, 3, , 4]);
                 return [4 /*yield*/, database_1.pool.query("SELECT NOW() as now")];
             case 2:
-                r = _a.sent();
-                res.json({ ok: true, now: r.rows[0] });
+                result_1 = _a.sent();
+                res.json({ ok: true, now: result_1.rows[0] });
                 return [3 /*break*/, 4];
             case 3:
-                err_1 = _a.sent();
-                console.error("/db-test error:", err_1);
-                res.status(500).json({ ok: false, error: String(err_1) });
+                error_1 = _a.sent();
+                logger_1.logger.error("/db-test error:", error_1);
+                res.status(500).json({ ok: false, error: String(error_1) });
                 return [3 /*break*/, 4];
             case 4: return [2 /*return*/];
         }
     });
 }); });
-function start() {
+// Global error handlers
+process.on("uncaughtException", function (err) { return logger_1.logger.error("uncaughtException:", err); });
+process.on("unhandledRejection", function (reason) { return logger_1.logger.error("unhandledRejection:", reason); });
+// Start servers
+function startServers() {
     return __awaiter(this, void 0, void 0, function () {
-        var err_2;
+        var error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    console.log("Calling testConnection()");
+                    logger_1.logger.info("Testing database connection...");
                     return [4 /*yield*/, (0, database_1.testConnection)()];
                 case 1:
-                    _a.sent(); // đảm bảo DB ok trước khi listen
-                    // bind 0.0.0.0 để nếu chạy trong container vẫn reachable từ host
-                    app.listen(port, "0.0.0.0", function () {
-                        console.log("Server running and listening at http://0.0.0.0:".concat(port));
+                    _a.sent();
+                    logger_1.logger.info("Database connected successfully.");
+                    rootApp.listen(ROOT_APP_PORT, "0.0.0.0", function () {
+                        logger_1.logger.info("Root app running at http://0.0.0.0:".concat(ROOT_APP_PORT));
+                    });
+                    courseApp.listen(COURSE_APP_PORT, "0.0.0.0", function () {
+                        logger_1.logger.info("Course app running at http://0.0.0.0:".concat(COURSE_APP_PORT));
                     });
                     return [3 /*break*/, 3];
                 case 2:
-                    err_2 = _a.sent();
-                    console.error("Failed to start server:", err_2);
+                    error_2 = _a.sent();
+                    logger_1.logger.error("Failed to start servers:", error_2);
                     process.exit(1);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
@@ -121,4 +117,4 @@ function start() {
         });
     });
 }
-start();
+startServers();

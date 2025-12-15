@@ -1,69 +1,69 @@
-
 import * as dotenv from "dotenv";
-
-const result = dotenv.config();
-
-if (result.error) {
-    console.log('Error loading environment variables from .env file, aborting...');
-    process.exit(1);
-}
-
-console.log(process.env.PORT)
-
 import * as express from 'express';
 import { root } from './routes/root';
-import { isInteger } from './ultils';
-import { logger } from "./logger";
+import { getAllCourses } from './routes/get-all-course';
 import { pool, testConnection } from "./database";
-import { Course } from "./models/course";
+import { logger } from "./logger";
 
-export async function getAllCourses(): Promise<Course[]> {
-  const result = await pool.query<Course>("SELECT * FROM courses ORDER BY seq_no");
-  return result.rows;
-}
-
-
-
-const app = express();
-const port = Number(process.env.APP_PORT || process.env.PORT || 3000);
-
-// global error handlers để log mọi lỗi không bắt
-process.on("uncaughtException", (err) => {
-  console.error("uncaughtException:", err);
-});
-process.on("unhandledRejection", (reason) => {
-  console.error("unhandledRejection:", reason);
-});
-
-// middlewares
-app.use(express.json());
-
-// test route
-app.get("/", (req, res) => res.json({ ok: true, message: "hello" }));
-
-app.get("/db-test", async (req, res) => {
-  console.log("/db-test hit");
-  try {
-    const r = await pool.query("SELECT NOW() as now");
-    res.json({ ok: true, now: r.rows[0] });
-  } catch (err) {
-    console.error("/db-test error:", err);
-    res.status(500).json({ ok: false, error: String(err) });
-  }
-});
-
-async function start() {
-  try {
-    console.log("Calling testConnection()");
-    await testConnection(); // đảm bảo DB ok trước khi listen
-    // bind 0.0.0.0 để nếu chạy trong container vẫn reachable từ host
-    app.listen(port, "0.0.0.0", () => {
-      console.log(`Server running and listening at http://0.0.0.0:${port}`);
-    });
-  } catch (err) {
-    console.error("Failed to start server:", err);
+// Load environment variables
+const result = dotenv.config();
+if (result.error) {
+    logger.error('Error loading environment variables, aborting.');
     process.exit(1);
-  }
 }
 
-start();
+// Constants for ports
+const ROOT_APP_PORT = Number(process.env.ROOT_APP_PORT || 3000);
+const COURSE_APP_PORT = Number(process.env.COURSE_APP_PORT || 9000);
+
+// Initialize express apps separately
+const rootApp = express();
+const courseApp = express();
+
+// Middlewares
+rootApp.use(express.json());
+courseApp.use(express.json());
+
+// Define routes explicitly
+rootApp.get('/', root);
+
+courseApp.get('/api/courses', getAllCourses);
+
+// Additional route for DB test
+rootApp.get("/db-test", async (req, res) => {
+    logger.info("/db-test hit");
+    try {
+        const result = await pool.query("SELECT NOW() as now");
+        res.json({ ok: true, now: result.rows[0] });
+    } catch (error) {
+        logger.error("/db-test error:", error);
+        res.status(500).json({ ok: false, error: String(error) });
+    }
+});
+
+// Global error handlers
+process.on("uncaughtException", (err) => logger.error("uncaughtException:", err));
+process.on("unhandledRejection", (reason) => logger.error("unhandledRejection:", reason));
+
+// Start servers
+async function startServers() {
+    try {
+        logger.info("Testing database connection...");
+        await testConnection();
+        logger.info("Database connected successfully.");
+
+        rootApp.listen(ROOT_APP_PORT, "0.0.0.0", () => {
+            logger.info(`Root app running at http://0.0.0.0:${ROOT_APP_PORT}`);
+        });
+
+        courseApp.listen(COURSE_APP_PORT, "0.0.0.0", () => {
+            logger.info(`Course app running at http://0.0.0.0:${COURSE_APP_PORT}`);
+        });
+
+    } catch (error) {
+        logger.error("Failed to start servers:", error);
+        process.exit(1);
+    }
+}
+
+startServers();
