@@ -4,6 +4,8 @@ import { root } from './routes/root';
 import { getAllCourses } from './routes/get-all-course';
 import { pool, testConnection } from "./database";
 import { logger } from "./logger";
+import { getCoursesWithLessons } from './routes/get-courses-with-lessons';
+
 
 // Load environment variables
 const result = dotenv.config();
@@ -28,6 +30,8 @@ courseApp.use(express.json());
 rootApp.get('/', root);
 
 courseApp.get('/api/courses', getAllCourses);
+
+courseApp.get("/api/courses-lessons", getCoursesWithLessons);
 
 // Additional route for DB test
 rootApp.get("/db-test", async (req, res) => {

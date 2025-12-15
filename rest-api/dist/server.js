@@ -42,6 +42,7 @@ var root_1 = require("./routes/root");
 var get_all_course_1 = require("./routes/get-all-course");
 var database_1 = require("./database");
 var logger_1 = require("./logger");
+var get_courses_with_lessons_1 = require("./routes/get-courses-with-lessons");
 // Load environment variables
 var result = dotenv.config();
 if (result.error) {
@@ -60,6 +61,7 @@ courseApp.use(express.json());
 // Define routes explicitly
 rootApp.get('/', root_1.root);
 courseApp.get('/api/courses', get_all_course_1.getAllCourses);
+courseApp.get("/api/courses-lessons", get_courses_with_lessons_1.getCoursesWithLessons);
 // Additional route for DB test
 rootApp.get("/db-test", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var result_1, error_1;
