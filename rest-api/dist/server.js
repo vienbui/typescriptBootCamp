@@ -43,6 +43,7 @@ var get_all_course_1 = require("./routes/get-all-course");
 var database_1 = require("./database");
 var logger_1 = require("./logger");
 var get_courses_with_lessons_1 = require("./routes/get-courses-with-lessons");
+var default_error_handler_1 = require("./middleware/default-error-handler");
 // Load environment variables
 var result = dotenv.config();
 if (result.error) {
@@ -62,6 +63,11 @@ courseApp.use(express.json());
 rootApp.get('/', root_1.root);
 courseApp.get('/api/courses', get_all_course_1.getAllCourses);
 courseApp.get("/api/courses-lessons", get_courses_with_lessons_1.getCoursesWithLessons);
+//less 115, apply override error handler for courseApp
+// courseApp.get('/api/test-error', (req, res, next) => {
+//   next(new Error('This is a test error'));
+// });
+courseApp.use(default_error_handler_1.defaultErrorHandler);
 // Additional route for DB test
 rootApp.get("/db-test", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var result_1, error_1;
