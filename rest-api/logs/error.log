@@ -1,0 +1,29 @@
+{
+    "code": "ENOTFOUND",
+    "errno": -3008,
+    "hostname": "postgres",
+    "level": "error",
+    "message": "Error during Data Source initialization: getaddrinfo ENOTFOUND postgres",
+    "stack": "Error: getaddrinfo ENOTFOUND postgres\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:107:26)",
+    "syscall": "getaddrinfo"
+}
+{
+    "address": "127.0.0.1",
+    "code": "ECONNREFUSED",
+    "errno": -61,
+    "level": "error",
+    "message": "Failed to start servers: connect ECONNREFUSED 127.0.0.1:5432",
+    "port": 5432,
+    "stack": "Error: connect ECONNREFUSED 127.0.0.1:5432\n    at /Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/pg-pool/index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+    "syscall": "connect"
+}
+{
+    "address": "127.0.0.1",
+    "code": "ECONNREFUSED",
+    "errno": -61,
+    "level": "error",
+    "message": "Failed to start servers: connect ECONNREFUSED 127.0.0.1:5432",
+    "port": 5432,
+    "stack": "Error: connect ECONNREFUSED 127.0.0.1:5432\n    at /Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/pg-pool/index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+    "syscall": "connect"
+}
