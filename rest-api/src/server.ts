@@ -15,10 +15,14 @@ import { root } from './routes/root';
 import { isInteger } from './ultils';
 import { logger } from "./logger";
 import { pool, testConnection } from "./database";
+import { Course } from "./models/course";
+
+export async function getAllCourses(): Promise<Course[]> {
+  const result = await pool.query<Course>("SELECT * FROM courses ORDER BY seq_no");
+  return result.rows;
+}
 
 
-
-dotenv.config();
 
 const app = express();
 const port = Number(process.env.APP_PORT || process.env.PORT || 3000);
