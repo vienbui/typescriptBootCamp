@@ -5,6 +5,8 @@ import { getAllCourses } from './routes/get-all-course';
 import { pool, testConnection } from "./database";
 import { logger } from "./logger";
 import { getCoursesWithLessons } from './routes/get-courses-with-lessons';
+import { defaultErrorHandler } from './middleware/default-error-handler';
+
 
 
 // Load environment variables
@@ -26,12 +28,25 @@ const courseApp = express();
 rootApp.use(express.json());
 courseApp.use(express.json());
 
+
+
+
+
+
 // Define routes explicitly
 rootApp.get('/', root);
 
 courseApp.get('/api/courses', getAllCourses);
 
 courseApp.get("/api/courses-lessons", getCoursesWithLessons);
+
+//less 115, apply override error handler for courseApp
+
+// courseApp.get('/api/test-error', (req, res, next) => {
+//   next(new Error('This is a test error'));
+// });
+
+courseApp.use(defaultErrorHandler); 
 
 // Additional route for DB test
 rootApp.get("/db-test", async (req, res) => {

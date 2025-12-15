@@ -1,0 +1,5 @@
+.idea
+dist
+.env
+rest-api/logs
+rest-api/node_modules
