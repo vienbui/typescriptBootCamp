@@ -9,6 +9,8 @@ import { logger } from "./logger";
 import { defaultErrorHandler } from './middleware/default-error-handler';
 import { findCourseByUrl } from "./routes/find-course-by-url";
 import { findLessonForCourse } from "./routes/find-lesson-for-course";
+import { updateCourse } from "./routes/update-course";
+import { createCourse } from "./routes/create-course";
 
 
 const result = dotenv.config();
@@ -38,6 +40,11 @@ function setupExpress() {
     courseApp.route("/api/courses/:courseUrl").get(findCourseByUrl);
 
     courseApp.route("/api/courses/:courseId/lessons").get(findLessonForCourse);
+
+    courseApp.route("/api/courses/:courseId").patch(updateCourse);
+
+    //less 123
+    courseApp.route("/api/courses/").post(createCourse);
 
     // Additional route for DB test
     rootApp.route("/db-test").get(async (req, res) => {
