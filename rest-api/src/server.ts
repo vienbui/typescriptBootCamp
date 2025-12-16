@@ -1,73 +1,60 @@
 import * as dotenv from "dotenv";
 import * as express from 'express';
+import * as cors from 'cors';
 import { root } from './routes/root';
 import { getAllCourses } from './routes/get-all-course';
+import { getCoursesWithLessons } from './routes/get-courses-with-lessons';
 import { pool, testConnection } from "./database";
 import { logger } from "./logger";
-import { getCoursesWithLessons } from './routes/get-courses-with-lessons';
 import { defaultErrorHandler } from './middleware/default-error-handler';
-import * as cors from 'cors';
 
-
-
-// Load environment variables
 const result = dotenv.config();
 if (result.error) {
     logger.error('Error loading environment variables, aborting.');
     process.exit(1);
 }
 
-// Constants for ports
-const ROOT_APP_PORT = Number(process.env.ROOT_APP_PORT || 3000);
-const COURSE_APP_PORT = Number(process.env.COURSE_APP_PORT || 9000);
-
-// Initialize express apps separately
 const rootApp = express();
 const courseApp = express();
 
-// Middlewares
-rootApp.use(express.json());
-courseApp.use(express.json());
+function setupExpress() {
+    // Middlewares
+    rootApp.use(express.json());
+    courseApp.use(express.json());
 
+    rootApp.use(cors({ origin: true }));
+    courseApp.use(cors({ origin: true }));
 
-// less 116, enable CORS
-courseApp.use(cors({ origin: true })); 
-rootApp.use(cors({ origin: true }));  
+    // Routes
+    rootApp.route("/").get(root);
 
+    courseApp.route("/api/courses").get(getAllCourses);
+    courseApp.route("/api/courses-lessons").get(getCoursesWithLessons);
 
-// Define routes explicitly
-rootApp.get('/', root);
+    // Additional route for DB test
+    rootApp.route("/db-test").get(async (req, res) => {
+        logger.info("/db-test hit");
+        try {
+            const result = await pool.query("SELECT NOW() as now");
+            res.json({ ok: true, now: result.rows[0] });
+        } catch (error) {
+            logger.error("/db-test error:", error);
+            res.status(500).json({ ok: false, error: String(error) });
+        }
+    });
 
-courseApp.get('/api/courses', getAllCourses);
+    // Global error handler middleware
+    courseApp.use(defaultErrorHandler);
+}
 
-courseApp.get("/api/courses-lessons", getCoursesWithLessons);
+async function startServer() {
+    const ROOT_APP_PORT = Number(process.env.ROOT_APP_PORT || 3000);
+    const COURSE_APP_PORT = Number(process.env.COURSE_APP_PORT || 9000);
 
-//less 115, apply override error handler for courseApp
+    // Global error handlers
+    process.on("uncaughtException", (err) => logger.error("uncaughtException:", err));
+    process.on("unhandledRejection", (reason) => logger.error("unhandledRejection:", reason));
 
-// courseApp.get('/api/test-error', (req, res, next) => {
-//   next(new Error('This is a test error'));
-// });
-
-courseApp.use(defaultErrorHandler); 
-
-// Additional route for DB test
-rootApp.get("/db-test", async (req, res) => {
-    logger.info("/db-test hit");
-    try {
-        const result = await pool.query("SELECT NOW() as now");
-        res.json({ ok: true, now: result.rows[0] });
-    } catch (error) {
-        logger.error("/db-test error:", error);
-        res.status(500).json({ ok: false, error: String(error) });
-    }
-});
-
-// Global error handlers
-process.on("uncaughtException", (err) => logger.error("uncaughtException:", err));
-process.on("unhandledRejection", (reason) => logger.error("unhandledRejection:", reason));
-
-// Start servers
-async function startServers() {
     try {
         logger.info("Testing database connection...");
         await testConnection();
@@ -87,4 +74,5 @@ async function startServers() {
     }
 }
 
-startServers();
+setupExpress();
+startServer();
