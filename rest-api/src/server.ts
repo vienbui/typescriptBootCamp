@@ -7,11 +7,13 @@ import { getCoursesWithLessons } from './routes/get-courses-with-lessons';
 import { pool, testConnection } from "./database";
 import { logger } from "./logger";
 import { defaultErrorHandler } from './middleware/default-error-handler';
+import { findCourseByUrl } from "./routes/find-course-by-url";
 
 const result = dotenv.config();
 if (result.error) {
     logger.error('Error loading environment variables, aborting.');
     process.exit(1);
+    
 }
 
 const rootApp = express();
@@ -30,6 +32,8 @@ function setupExpress() {
 
     courseApp.route("/api/courses").get(getAllCourses);
     courseApp.route("/api/courses-lessons").get(getCoursesWithLessons);
+
+    courseApp.route("/api/courses/:courseUrl").get(findCourseByUrl);
 
     // Additional route for DB test
     rootApp.route("/db-test").get(async (req, res) => {

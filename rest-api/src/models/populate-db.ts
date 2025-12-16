@@ -16,14 +16,15 @@ async function populateDb() {
             // Insert Course vào DB
             const courseQuery = `
                 INSERT INTO "Course"
-                ("id", "seqNo", "title", "iconUrl", "longDescription", "category", "createdAt", "updatedAt")
-                VALUES ($1,$2,$3,$4,$5,$6, NOW(), NOW())
+                ("id", "seqNo", "title", "url", "iconUrl", "longDescription", "category", "createdAt", "updatedAt")
+                VALUES ($1,$2,$3,$4,$5,$6,$7, NOW(), NOW())
                 RETURNING id`;
 
             const courseValues = [
                 course.id,
                 course.seqNo,
                 course.title,
+                course.url,
                 course.iconUrl,
                 course.longDescription,
                 course.category
