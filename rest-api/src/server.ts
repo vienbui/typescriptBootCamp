@@ -8,6 +8,8 @@ import { pool, testConnection } from "./database";
 import { logger } from "./logger";
 import { defaultErrorHandler } from './middleware/default-error-handler';
 import { findCourseByUrl } from "./routes/find-course-by-url";
+import { findLessonForCourse } from "./routes/find-lesson-for-course";
+
 
 const result = dotenv.config();
 if (result.error) {
@@ -34,6 +36,8 @@ function setupExpress() {
     courseApp.route("/api/courses-lessons").get(getCoursesWithLessons);
 
     courseApp.route("/api/courses/:courseUrl").get(findCourseByUrl);
+
+    courseApp.route("/api/courses/:courseId/lessons").get(findLessonForCourse);
 
     // Additional route for DB test
     rootApp.route("/db-test").get(async (req, res) => {
