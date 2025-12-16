@@ -46,6 +46,7 @@ var database_1 = require("./database");
 var logger_1 = require("./logger");
 var default_error_handler_1 = require("./middleware/default-error-handler");
 var find_course_by_url_1 = require("./routes/find-course-by-url");
+var find_lesson_for_course_1 = require("./routes/find-lesson-for-course");
 var result = dotenv.config();
 if (result.error) {
     logger_1.logger.error('Error loading environment variables, aborting.');
@@ -65,6 +66,7 @@ function setupExpress() {
     courseApp.route("/api/courses").get(get_all_course_1.getAllCourses);
     courseApp.route("/api/courses-lessons").get(get_courses_with_lessons_1.getCoursesWithLessons);
     courseApp.route("/api/courses/:courseUrl").get(find_course_by_url_1.findCourseByUrl);
+    courseApp.route("/api/courses/:courseId/lessons").get(find_lesson_for_course_1.findLessonForCourse);
     // Additional route for DB test
     rootApp.route("/db-test").get(function (req, res) { return __awaiter(_this, void 0, void 0, function () {
         var result_1, error_1;
