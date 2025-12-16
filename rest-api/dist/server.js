@@ -38,78 +38,77 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var dotenv = require("dotenv");
 var express = require("express");
+var cors = require("cors");
 var root_1 = require("./routes/root");
 var get_all_course_1 = require("./routes/get-all-course");
+var get_courses_with_lessons_1 = require("./routes/get-courses-with-lessons");
 var database_1 = require("./database");
 var logger_1 = require("./logger");
-var get_courses_with_lessons_1 = require("./routes/get-courses-with-lessons");
 var default_error_handler_1 = require("./middleware/default-error-handler");
-var cors = require("cors");
-// Load environment variables
+var find_course_by_url_1 = require("./routes/find-course-by-url");
 var result = dotenv.config();
 if (result.error) {
     logger_1.logger.error('Error loading environment variables, aborting.');
     process.exit(1);
 }
-// Constants for ports
-var ROOT_APP_PORT = Number(process.env.ROOT_APP_PORT || 3000);
-var COURSE_APP_PORT = Number(process.env.COURSE_APP_PORT || 9000);
-// Initialize express apps separately
 var rootApp = express();
 var courseApp = express();
-// Middlewares
-rootApp.use(express.json());
-courseApp.use(express.json());
-// less 116, enable CORS
-courseApp.use(cors({ origin: true }));
-rootApp.use(cors({ origin: true }));
-// Define routes explicitly
-rootApp.get('/', root_1.root);
-courseApp.get('/api/courses', get_all_course_1.getAllCourses);
-courseApp.get("/api/courses-lessons", get_courses_with_lessons_1.getCoursesWithLessons);
-//less 115, apply override error handler for courseApp
-// courseApp.get('/api/test-error', (req, res, next) => {
-//   next(new Error('This is a test error'));
-// });
-courseApp.use(default_error_handler_1.defaultErrorHandler);
-// Additional route for DB test
-rootApp.get("/db-test", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var result_1, error_1;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                logger_1.logger.info("/db-test hit");
-                _a.label = 1;
-            case 1:
-                _a.trys.push([1, 3, , 4]);
-                return [4 /*yield*/, database_1.pool.query("SELECT NOW() as now")];
-            case 2:
-                result_1 = _a.sent();
-                res.json({ ok: true, now: result_1.rows[0] });
-                return [3 /*break*/, 4];
-            case 3:
-                error_1 = _a.sent();
-                logger_1.logger.error("/db-test error:", error_1);
-                res.status(500).json({ ok: false, error: String(error_1) });
-                return [3 /*break*/, 4];
-            case 4: return [2 /*return*/];
-        }
-    });
-}); });
-// Global error handlers
-process.on("uncaughtException", function (err) { return logger_1.logger.error("uncaughtException:", err); });
-process.on("unhandledRejection", function (reason) { return logger_1.logger.error("unhandledRejection:", reason); });
-// Start servers
-function startServers() {
-    return __awaiter(this, void 0, void 0, function () {
-        var error_2;
+function setupExpress() {
+    var _this = this;
+    // Middlewares
+    rootApp.use(express.json());
+    courseApp.use(express.json());
+    rootApp.use(cors({ origin: true }));
+    courseApp.use(cors({ origin: true }));
+    // Routes
+    rootApp.route("/").get(root_1.root);
+    courseApp.route("/api/courses").get(get_all_course_1.getAllCourses);
+    courseApp.route("/api/courses-lessons").get(get_courses_with_lessons_1.getCoursesWithLessons);
+    courseApp.route("/api/courses/:courseUrl").get(find_course_by_url_1.findCourseByUrl);
+    // Additional route for DB test
+    rootApp.route("/db-test").get(function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+        var result_1, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 2, , 3]);
+                    logger_1.logger.info("/db-test hit");
+                    _a.label = 1;
+                case 1:
+                    _a.trys.push([1, 3, , 4]);
+                    return [4 /*yield*/, database_1.pool.query("SELECT NOW() as now")];
+                case 2:
+                    result_1 = _a.sent();
+                    res.json({ ok: true, now: result_1.rows[0] });
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_1 = _a.sent();
+                    logger_1.logger.error("/db-test error:", error_1);
+                    res.status(500).json({ ok: false, error: String(error_1) });
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    }); });
+    // Global error handler middleware
+    courseApp.use(default_error_handler_1.defaultErrorHandler);
+}
+function startServer() {
+    return __awaiter(this, void 0, void 0, function () {
+        var ROOT_APP_PORT, COURSE_APP_PORT, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    ROOT_APP_PORT = Number(process.env.ROOT_APP_PORT || 3000);
+                    COURSE_APP_PORT = Number(process.env.COURSE_APP_PORT || 9000);
+                    // Global error handlers
+                    process.on("uncaughtException", function (err) { return logger_1.logger.error("uncaughtException:", err); });
+                    process.on("unhandledRejection", function (reason) { return logger_1.logger.error("unhandledRejection:", reason); });
+                    _a.label = 1;
+                case 1:
+                    _a.trys.push([1, 3, , 4]);
                     logger_1.logger.info("Testing database connection...");
                     return [4 /*yield*/, (0, database_1.testConnection)()];
-                case 1:
+                case 2:
                     _a.sent();
                     logger_1.logger.info("Database connected successfully.");
                     rootApp.listen(ROOT_APP_PORT, "0.0.0.0", function () {
@@ -118,15 +117,16 @@ function startServers() {
                     courseApp.listen(COURSE_APP_PORT, "0.0.0.0", function () {
                         logger_1.logger.info("Course app running at http://0.0.0.0:".concat(COURSE_APP_PORT));
                     });
-                    return [3 /*break*/, 3];
-                case 2:
+                    return [3 /*break*/, 4];
+                case 3:
                     error_2 = _a.sent();
                     logger_1.logger.error("Failed to start servers:", error_2);
                     process.exit(1);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });
 }
-startServers();
+setupExpress();
+startServer();
