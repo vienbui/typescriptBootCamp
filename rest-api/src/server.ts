@@ -11,6 +11,7 @@ import { findCourseByUrl } from "./routes/find-course-by-url";
 import { findLessonForCourse } from "./routes/find-lesson-for-course";
 import { updateCourse } from "./routes/update-course";
 import { createCourse } from "./routes/create-course";
+import { deleteCourse } from "./routes/delete-course";
 
 
 const result = dotenv.config();
@@ -45,6 +46,10 @@ function setupExpress() {
 
     //less 123
     courseApp.route("/api/courses/").post(createCourse);
+
+    //less 125 - delete
+    courseApp.route("/api/courses/:courseId").delete(deleteCourse)
+    
 
     // Additional route for DB test
     rootApp.route("/db-test").get(async (req, res) => {
