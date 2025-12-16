@@ -1315,3 +1315,515 @@
     "level": "debug",
     "message": "Called updateCourse() with id: 20"
 }
+{
+    "level": "info",
+    "message": "Testing database connection..."
+}
+{
+    "level": "info",
+    "message": "Database connected successfully."
+}
+{
+    "level": "info",
+    "message": "Root app running at http://0.0.0.0:3000"
+}
+{
+    "level": "info",
+    "message": "Course app running at http://0.0.0.0:9000"
+}
+{
+    "level": "info",
+    "message": "Testing database connection..."
+}
+{
+    "level": "info",
+    "message": "Database connected successfully."
+}
+{
+    "level": "info",
+    "message": "Root app running at http://0.0.0.0:3000"
+}
+{
+    "level": "info",
+    "message": "Course app running at http://0.0.0.0:9000"
+}
+{
+    "category": "BEGINNER",
+    "iconUrl": "icon-url.jpg",
+    "level": "debug",
+    "longDescription": "Learn TypeScript deeply",
+    "message": "Attempting to create a new course:",
+    "seqNo": 99,
+    "title": "New Course",
+    "url": "new-course-url"
+}
+{
+    "code": "23505",
+    "constraint": "Course_pkey",
+    "detail": "Key (id)=(1) already exists.",
+    "file": "nbtinsert.c",
+    "length": 183,
+    "level": "error",
+    "line": "666",
+    "message": "Error in updateCourse: duplicate key value violates unique constraint \"Course_pkey\"",
+    "name": "error",
+    "routine": "_bt_check_unique",
+    "schema": "public",
+    "severity": "ERROR",
+    "stack": "error: duplicate key value violates unique constraint \"Course_pkey\"\n    at /Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/pg-pool/index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+    "table": "Course"
+}
+{
+    "level": "error",
+    "message": "Default error handler triggered; reason: duplicate key value violates unique constraint \"Course_pkey\"",
+    "stack": "error: duplicate key value violates unique constraint \"Course_pkey\"\n    at /Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/pg-pool/index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
+}
+{
+    "level": "error",
+    "message": "Response was already being writeen, delegating to built-in Express error handler."
+}
+{
+    "level": "info",
+    "message": "Testing database connection..."
+}
+{
+    "level": "info",
+    "message": "Database connected successfully."
+}
+{
+    "level": "info",
+    "message": "Root app running at http://0.0.0.0:3000"
+}
+{
+    "level": "info",
+    "message": "Course app running at http://0.0.0.0:9000"
+}
+{
+    "category": "BEGINNER",
+    "iconUrl": "icon-url.jpg",
+    "level": "debug",
+    "longDescription": "Learn TypeScript deeply",
+    "message": "Attempting to create a new course:",
+    "seqNo": 99,
+    "title": "New Course",
+    "url": "new-course-url"
+}
+{
+    "code": "08P01",
+    "file": "postgres.c",
+    "length": 137,
+    "level": "error",
+    "line": "1733",
+    "message": "Error in updateCourse: bind message supplies 6 parameters, but prepared statement \"\" requires 8",
+    "name": "error",
+    "routine": "exec_bind_message",
+    "severity": "ERROR",
+    "stack": "error: bind message supplies 6 parameters, but prepared statement \"\" requires 8\n    at /Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/pg-pool/index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
+}
+{
+    "level": "error",
+    "message": "Default error handler triggered; reason: bind message supplies 6 parameters, but prepared statement \"\" requires 8",
+    "stack": "error: bind message supplies 6 parameters, but prepared statement \"\" requires 8\n    at /Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/pg-pool/index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
+}
+{
+    "level": "error",
+    "message": "Response was already being writeen, delegating to built-in Express error handler."
+}
+{
+    "category": "BEGINNER",
+    "iconUrl": "icon-url.jpg",
+    "level": "debug",
+    "longDescription": "Learn TypeScript deeply",
+    "message": "Attempting to create a new course:",
+    "seqNo": 99,
+    "title": "New Course",
+    "url": "new-course-url"
+}
+{
+    "code": "08P01",
+    "file": "postgres.c",
+    "length": 137,
+    "level": "error",
+    "line": "1733",
+    "message": "Error in updateCourse: bind message supplies 6 parameters, but prepared statement \"\" requires 8",
+    "name": "error",
+    "routine": "exec_bind_message",
+    "severity": "ERROR",
+    "stack": "error: bind message supplies 6 parameters, but prepared statement \"\" requires 8\n    at /Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/pg-pool/index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
+}
+{
+    "level": "error",
+    "message": "Default error handler triggered; reason: bind message supplies 6 parameters, but prepared statement \"\" requires 8",
+    "stack": "error: bind message supplies 6 parameters, but prepared statement \"\" requires 8\n    at /Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/pg-pool/index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
+}
+{
+    "level": "error",
+    "message": "Response was already being writeen, delegating to built-in Express error handler."
+}
+{
+    "level": "info",
+    "message": "Testing database connection..."
+}
+{
+    "level": "info",
+    "message": "Database connected successfully."
+}
+{
+    "level": "info",
+    "message": "Root app running at http://0.0.0.0:3000"
+}
+{
+    "level": "info",
+    "message": "Course app running at http://0.0.0.0:9000"
+}
+{
+    "level": "info",
+    "message": "Testing database connection..."
+}
+{
+    "level": "info",
+    "message": "Database connected successfully."
+}
+{
+    "level": "info",
+    "message": "Root app running at http://0.0.0.0:3000"
+}
+{
+    "level": "info",
+    "message": "Course app running at http://0.0.0.0:9000"
+}
+{
+    "level": "info",
+    "message": "Testing database connection..."
+}
+{
+    "level": "info",
+    "message": "Database connected successfully."
+}
+{
+    "level": "info",
+    "message": "Root app running at http://0.0.0.0:3000"
+}
+{
+    "level": "info",
+    "message": "Course app running at http://0.0.0.0:9000"
+}
+{
+    "level": "info",
+    "message": "Testing database connection..."
+}
+{
+    "level": "info",
+    "message": "Database connected successfully."
+}
+{
+    "level": "info",
+    "message": "Root app running at http://0.0.0.0:3000"
+}
+{
+    "level": "info",
+    "message": "Course app running at http://0.0.0.0:9000"
+}
+{
+    "category": "BEGINNER",
+    "iconUrl": "icon-url.jpg",
+    "level": "debug",
+    "longDescription": "Learn TypeScript deeply",
+    "message": "Attempting to create a new course:",
+    "seqNo": 99,
+    "title": "New Course",
+    "url": "new-course-url"
+}
+{
+    "code": "08P01",
+    "file": "postgres.c",
+    "length": 137,
+    "level": "error",
+    "line": "1733",
+    "message": "Error in updateCourse: bind message supplies 7 parameters, but prepared statement \"\" requires 8",
+    "name": "error",
+    "routine": "exec_bind_message",
+    "severity": "ERROR",
+    "stack": "error: bind message supplies 7 parameters, but prepared statement \"\" requires 8\n    at /Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/pg-pool/index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
+}
+{
+    "level": "error",
+    "message": "Default error handler triggered; reason: bind message supplies 7 parameters, but prepared statement \"\" requires 8",
+    "stack": "error: bind message supplies 7 parameters, but prepared statement \"\" requires 8\n    at /Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/pg-pool/index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
+}
+{
+    "level": "error",
+    "message": "Response was already being writeen, delegating to built-in Express error handler."
+}
+{
+    "category": "BEGINNER",
+    "iconUrl": "icon-url.jpg",
+    "level": "debug",
+    "longDescription": "Learn TypeScript deeply",
+    "message": "Attempting to create a new course:",
+    "seqNo": 99,
+    "title": "New Course",
+    "url": "new-course-url"
+}
+{
+    "code": "08P01",
+    "file": "postgres.c",
+    "length": 137,
+    "level": "error",
+    "line": "1733",
+    "message": "Error in updateCourse: bind message supplies 7 parameters, but prepared statement \"\" requires 8",
+    "name": "error",
+    "routine": "exec_bind_message",
+    "severity": "ERROR",
+    "stack": "error: bind message supplies 7 parameters, but prepared statement \"\" requires 8\n    at /Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/pg-pool/index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
+}
+{
+    "level": "error",
+    "message": "Default error handler triggered; reason: bind message supplies 7 parameters, but prepared statement \"\" requires 8",
+    "stack": "error: bind message supplies 7 parameters, but prepared statement \"\" requires 8\n    at /Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/pg-pool/index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
+}
+{
+    "level": "error",
+    "message": "Response was already being writeen, delegating to built-in Express error handler."
+}
+{
+    "level": "info",
+    "message": "Testing database connection..."
+}
+{
+    "level": "info",
+    "message": "Database connected successfully."
+}
+{
+    "level": "info",
+    "message": "Root app running at http://0.0.0.0:3000"
+}
+{
+    "level": "info",
+    "message": "Course app running at http://0.0.0.0:9000"
+}
+{
+    "category": "BEGINNER",
+    "iconUrl": "icon-url.jpg",
+    "level": "debug",
+    "longDescription": "Learn TypeScript deeply",
+    "message": "Attempting to create a new course:",
+    "seqNo": 99,
+    "title": "New Course",
+    "url": "new-course-url"
+}
+{
+    "code": "08P01",
+    "file": "postgres.c",
+    "length": 137,
+    "level": "error",
+    "line": "1733",
+    "message": "Error in updateCourse: bind message supplies 7 parameters, but prepared statement \"\" requires 8",
+    "name": "error",
+    "routine": "exec_bind_message",
+    "severity": "ERROR",
+    "stack": "error: bind message supplies 7 parameters, but prepared statement \"\" requires 8\n    at /Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/pg-pool/index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
+}
+{
+    "level": "error",
+    "message": "Default error handler triggered; reason: bind message supplies 7 parameters, but prepared statement \"\" requires 8",
+    "stack": "error: bind message supplies 7 parameters, but prepared statement \"\" requires 8\n    at /Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/pg-pool/index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
+}
+{
+    "level": "error",
+    "message": "Response was already being writeen, delegating to built-in Express error handler."
+}
+{
+    "level": "info",
+    "message": "Testing database connection..."
+}
+{
+    "level": "info",
+    "message": "Database connected successfully."
+}
+{
+    "level": "info",
+    "message": "Root app running at http://0.0.0.0:3000"
+}
+{
+    "level": "info",
+    "message": "Course app running at http://0.0.0.0:9000"
+}
+{
+    "category": "BEGINNER",
+    "iconUrl": "icon-url.jpg",
+    "level": "debug",
+    "longDescription": "Learn TypeScript deeply",
+    "message": "Attempting to create a new course:",
+    "seqNo": 99,
+    "title": "New Course",
+    "url": "new-course-url"
+}
+{
+    "code": "23505",
+    "constraint": "Course_pkey",
+    "detail": "Key (id)=(2) already exists.",
+    "file": "nbtinsert.c",
+    "length": 183,
+    "level": "error",
+    "line": "666",
+    "message": "Error in updateCourse: duplicate key value violates unique constraint \"Course_pkey\"",
+    "name": "error",
+    "routine": "_bt_check_unique",
+    "schema": "public",
+    "severity": "ERROR",
+    "stack": "error: duplicate key value violates unique constraint \"Course_pkey\"\n    at /Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/pg-pool/index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+    "table": "Course"
+}
+{
+    "level": "error",
+    "message": "Default error handler triggered; reason: duplicate key value violates unique constraint \"Course_pkey\"",
+    "stack": "error: duplicate key value violates unique constraint \"Course_pkey\"\n    at /Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/pg-pool/index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
+}
+{
+    "level": "error",
+    "message": "Response was already being writeen, delegating to built-in Express error handler."
+}
+{
+    "category": "BEGINNER",
+    "iconUrl": "icon-url.jpg",
+    "level": "debug",
+    "longDescription": "Learn TypeScript deeply",
+    "message": "Attempting to create a new course:",
+    "seqNo": 99,
+    "title": "New Course",
+    "url": "new-course-url"
+}
+{
+    "code": "23505",
+    "constraint": "Course_pkey",
+    "detail": "Key (id)=(3) already exists.",
+    "file": "nbtinsert.c",
+    "length": 183,
+    "level": "error",
+    "line": "666",
+    "message": "Error in updateCourse: duplicate key value violates unique constraint \"Course_pkey\"",
+    "name": "error",
+    "routine": "_bt_check_unique",
+    "schema": "public",
+    "severity": "ERROR",
+    "stack": "error: duplicate key value violates unique constraint \"Course_pkey\"\n    at /Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/pg-pool/index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+    "table": "Course"
+}
+{
+    "level": "error",
+    "message": "Default error handler triggered; reason: duplicate key value violates unique constraint \"Course_pkey\"",
+    "stack": "error: duplicate key value violates unique constraint \"Course_pkey\"\n    at /Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/pg-pool/index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
+}
+{
+    "level": "error",
+    "message": "Response was already being writeen, delegating to built-in Express error handler."
+}
+{
+    "category": "BEGINNER",
+    "iconUrl": "icon-url.jpg",
+    "level": "debug",
+    "longDescription": "Learn TypeScript deeply",
+    "message": "Attempting to create a new course:",
+    "seqNo": 99,
+    "title": "New Course",
+    "url": "new-course-url"
+}
+{
+    "code": "23505",
+    "constraint": "Course_pkey",
+    "detail": "Key (id)=(4) already exists.",
+    "file": "nbtinsert.c",
+    "length": 183,
+    "level": "error",
+    "line": "666",
+    "message": "Error in updateCourse: duplicate key value violates unique constraint \"Course_pkey\"",
+    "name": "error",
+    "routine": "_bt_check_unique",
+    "schema": "public",
+    "severity": "ERROR",
+    "stack": "error: duplicate key value violates unique constraint \"Course_pkey\"\n    at /Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/pg-pool/index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+    "table": "Course"
+}
+{
+    "level": "error",
+    "message": "Default error handler triggered; reason: duplicate key value violates unique constraint \"Course_pkey\"",
+    "stack": "error: duplicate key value violates unique constraint \"Course_pkey\"\n    at /Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/pg-pool/index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
+}
+{
+    "level": "error",
+    "message": "Response was already being writeen, delegating to built-in Express error handler."
+}
+{
+    "level": "info",
+    "message": "Testing database connection..."
+}
+{
+    "level": "info",
+    "message": "Database connected successfully."
+}
+{
+    "level": "info",
+    "message": "Root app running at http://0.0.0.0:3000"
+}
+{
+    "level": "info",
+    "message": "Course app running at http://0.0.0.0:9000"
+}
+{
+    "category": "BEGINNER",
+    "iconUrl": "icon-url.jpg",
+    "level": "debug",
+    "longDescription": "Learn TypeScript deeply",
+    "message": "Attempting to create a new course:",
+    "seqNo": 99,
+    "title": "New Course",
+    "url": "new-course-url"
+}
+{
+    "level": "debug",
+    "message": "Course created successfully: 21"
+}
+{
+    "category": "BEGINNER 1",
+    "iconUrl": "icon-url.jpg",
+    "level": "debug",
+    "longDescription": "Learn TypeScript deeply 1",
+    "message": "Attempting to create a new course:",
+    "seqNo": 100,
+    "title": "New Course 1",
+    "url": "new-course-url_1"
+}
+{
+    "level": "debug",
+    "message": "Course created successfully: 22"
+}
+{
+    "level": "info",
+    "message": "Testing database connection..."
+}
+{
+    "level": "info",
+    "message": "Database connected successfully."
+}
+{
+    "level": "info",
+    "message": "Root app running at http://0.0.0.0:3000"
+}
+{
+    "level": "info",
+    "message": "Course app running at http://0.0.0.0:9000"
+}
+{
+    "category": "BEGINNER",
+    "iconUrl": "icon-url.jpg",
+    "level": "debug",
+    "longDescription": "Learn TypeScript deeply",
+    "message": "Attempting to create a new course:",
+    "title": "New Course",
+    "url": "new-course-url"
+}
+{
+    "level": "debug",
+    "message": "Course created successfully: 23"
+}

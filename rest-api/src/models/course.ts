@@ -5,6 +5,8 @@ export class Course {
   id: number;
 
   seqNo: number;
+
+  url: string;
  
   title: string;
 
