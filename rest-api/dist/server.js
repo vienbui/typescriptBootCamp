@@ -44,6 +44,7 @@ var database_1 = require("./database");
 var logger_1 = require("./logger");
 var get_courses_with_lessons_1 = require("./routes/get-courses-with-lessons");
 var default_error_handler_1 = require("./middleware/default-error-handler");
+var cors = require("cors");
 // Load environment variables
 var result = dotenv.config();
 if (result.error) {
@@ -59,6 +60,9 @@ var courseApp = express();
 // Middlewares
 rootApp.use(express.json());
 courseApp.use(express.json());
+// less 116, enable CORS
+courseApp.use(cors({ origin: true }));
+rootApp.use(cors({ origin: true }));
 // Define routes explicitly
 rootApp.get('/', root_1.root);
 courseApp.get('/api/courses', get_all_course_1.getAllCourses);

@@ -6,6 +6,7 @@ import { pool, testConnection } from "./database";
 import { logger } from "./logger";
 import { getCoursesWithLessons } from './routes/get-courses-with-lessons';
 import { defaultErrorHandler } from './middleware/default-error-handler';
+import * as cors from 'cors';
 
 
 
@@ -29,8 +30,9 @@ rootApp.use(express.json());
 courseApp.use(express.json());
 
 
-
-
+// less 116, enable CORS
+courseApp.use(cors({ origin: true })); 
+rootApp.use(cors({ origin: true }));  
 
 
 // Define routes explicitly
