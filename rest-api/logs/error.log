@@ -78,3 +78,8 @@
     "level": "error",
     "message": "Response was already being writeen, delegating to built-in Express error handler."
 }
+{
+    "level": "error",
+    "message": "Default error handler triggered; reason: Unexpected token } in JSON at position 22",
+    "stack": "SyntaxError: Unexpected token } in JSON at position 22\n    at JSON.parse (<anonymous>)\n    at parse (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/body-parser/lib/types/json.js:74:19)\n    at /Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/body-parser/lib/read.js:163:18\n    at AsyncResource.runInAsyncScope (node:async_hooks:203:9)\n    at invokeCallback (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/raw-body/index.js:238:16)\n    at done (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/raw-body/index.js:227:7)\n    at IncomingMessage.onEnd (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/raw-body/index.js:287:7)\n    at IncomingMessage.emit (node:events:517:28)\n    at endReadableNT (node:internal/streams/readable:1400:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)"
+}

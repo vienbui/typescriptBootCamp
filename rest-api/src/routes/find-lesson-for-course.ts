@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { logger } from '../logger';
 import { pool } from '../database';
-import { query } from 'winston';
 
 
 export async function findLessonForCourse(
