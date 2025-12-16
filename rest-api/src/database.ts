@@ -1,5 +1,8 @@
 import { Pool } from "pg";
 import * as dotenv from "dotenv";
+import { parse } from "path";
+import { User } from "./models/user";
+import { DataSource } from "typeorm";
 
 dotenv.config();
 
@@ -16,3 +19,4 @@ export async function testConnection() {
   const res = await pool.query("SELECT NOW()");
   console.log("Connected to DB:", res.rows[0]);
 }
+

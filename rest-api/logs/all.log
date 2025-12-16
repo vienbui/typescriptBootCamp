@@ -1927,3 +1927,19 @@
     "level": "debug",
     "message": "Attempting to delete course with ID 23"
 }
+{
+    "level": "info",
+    "message": "Testing database connection..."
+}
+{
+    "level": "info",
+    "message": "Database connected successfully."
+}
+{
+    "level": "info",
+    "message": "Root app running at http://0.0.0.0:3000"
+}
+{
+    "level": "info",
+    "message": "Course app running at http://0.0.0.0:9000"
+}

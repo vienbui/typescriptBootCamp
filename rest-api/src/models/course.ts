@@ -1,24 +1,66 @@
-import { Lesson } from "./lesson";
+// import { Lesson } from "./lesson";
 
+// export class Course {
+
+//   id: number;
+
+//   seqNo: number;
+
+//   url: string;
+ 
+//   title: string;
+
+//   iconUrl: string;
+
+//   longDescription: string;
+
+//   category: string;
+
+//   lessons: Lesson []
+
+//   createdAt: Date;
+  
+//   updatedAt: Date;
+// }
+
+import {
+    Column, CreateDateColumn, Entity, OneToMany,
+    PrimaryGeneratedColumn, UpdateDateColumn
+} from "typeorm";
+import {Lesson} from "./lesson";
+
+@Entity({
+    name: "COURSES"
+})
 export class Course {
 
-  id: number;
+    @PrimaryGeneratedColumn()
+    id:number;
 
-  seqNo: number;
+    @Column()
+    seqNo:number;
 
-  url: string;
- 
-  title: string;
+    @Column()
+    url:string;
 
-  iconUrl: string;
+    @Column()
+    title:string;
 
-  longDescription: string;
+    @Column()
+    iconUrl:string;
 
-  category: string;
+    @Column()
+    longDescription:string;
 
-  lessons: Lesson []
+    @Column()
+    category: string;
 
-  createdAt: Date;
-  
-  updatedAt: Date;
+    @OneToMany(() => Lesson, lesson => lesson.course)
+    lessons: Lesson[];
+
+    @CreateDateColumn()
+    createdAt: Date;
+
+    @UpdateDateColumn()
+    lastUpdatedAt: Date;
 }
