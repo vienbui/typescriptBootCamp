@@ -49,6 +49,7 @@ var find_course_by_url_1 = require("./routes/find-course-by-url");
 var find_lesson_for_course_1 = require("./routes/find-lesson-for-course");
 var update_course_1 = require("./routes/update-course");
 var create_course_1 = require("./routes/create-course");
+var delete_course_1 = require("./routes/delete-course");
 var result = dotenv.config();
 if (result.error) {
     logger_1.logger.error('Error loading environment variables, aborting.');
@@ -72,6 +73,8 @@ function setupExpress() {
     courseApp.route("/api/courses/:courseId").patch(update_course_1.updateCourse);
     //less 123
     courseApp.route("/api/courses/").post(create_course_1.createCourse);
+    //less 125 - delete
+    courseApp.route("/api/courses/:courseId").delete(delete_course_1.deleteCourse);
     // Additional route for DB test
     rootApp.route("/db-test").get(function (req, res) { return __awaiter(_this, void 0, void 0, function () {
         var result_1, error_1;
