@@ -6,6 +6,7 @@ import { getAllCourses } from './routes-sql/get-all-course-sql';
 import { getCoursesWithLessons } from './routes-sql/get-courses-with-lessons-sql';
 import { pool, testConnection } from "./database";
 import { logger } from "./logger";
+import { AppDataSource } from './data-source';
 import { defaultErrorHandler } from './middleware/default-error-handler';
 import { findCourseByUrl } from "./routes-sql/find-course-by-url-sql";
 import { findLessonForCourse } from "./routes-sql/find-lesson-for-course-sql";
@@ -13,7 +14,7 @@ import { updateCourse } from "./routes-sql/update-course-sql";
 import { createCourse } from "./routes-sql/create-course-sql";
 import { deleteCourse } from "./routes-sql/delete-course-sql";
 import { createUser } from "./root/create-user";
-import { AppDataSource } from './data-source';
+import { login } from "./root/login";
 
 
 const result = dotenv.config();
@@ -53,6 +54,8 @@ function setupExpress() {
     courseApp.route("/api/courses/:courseId").delete(deleteCourse)
 
     courseApp.route("/api/users").post(createUser)
+
+    courseApp.route("/api/login").post(login)
     
     // Additional route for DB test
     rootApp.route("/db-test").get(async (req, res) => {

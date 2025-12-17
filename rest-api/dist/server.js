@@ -44,6 +44,7 @@ var get_all_course_sql_1 = require("./routes-sql/get-all-course-sql");
 var get_courses_with_lessons_sql_1 = require("./routes-sql/get-courses-with-lessons-sql");
 var database_1 = require("./database");
 var logger_1 = require("./logger");
+var data_source_1 = require("./data-source");
 var default_error_handler_1 = require("./middleware/default-error-handler");
 var find_course_by_url_sql_1 = require("./routes-sql/find-course-by-url-sql");
 var find_lesson_for_course_sql_1 = require("./routes-sql/find-lesson-for-course-sql");
@@ -51,7 +52,7 @@ var update_course_sql_1 = require("./routes-sql/update-course-sql");
 var create_course_sql_1 = require("./routes-sql/create-course-sql");
 var delete_course_sql_1 = require("./routes-sql/delete-course-sql");
 var create_user_1 = require("./root/create-user");
-var data_source_1 = require("./data-source");
+var login_1 = require("./root/login");
 var result = dotenv.config();
 if (result.error) {
     logger_1.logger.error('Error loading environment variables, aborting.');
@@ -78,6 +79,7 @@ function setupExpress() {
     //less 125 - delete
     courseApp.route("/api/courses/:courseId").delete(delete_course_sql_1.deleteCourse);
     courseApp.route("/api/users").post(create_user_1.createUser);
+    courseApp.route("/api/login").post(login_1.login);
     // Additional route for DB test
     rootApp.route("/db-test").get(function (req, res) { return __awaiter(_this, void 0, void 0, function () {
         var result_1, error_1;
