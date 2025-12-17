@@ -12,6 +12,8 @@ import { findLessonForCourse } from "./routes-sql/find-lesson-for-course-sql";
 import { updateCourse } from "./routes-sql/update-course-sql";
 import { createCourse } from "./routes-sql/create-course-sql";
 import { deleteCourse } from "./routes-sql/delete-course-sql";
+import { createUser } from "./root/create-user";
+import { AppDataSource } from './data-source';
 
 
 const result = dotenv.config();
@@ -49,6 +51,8 @@ function setupExpress() {
 
     //less 125 - delete
     courseApp.route("/api/courses/:courseId").delete(deleteCourse)
+
+    courseApp.route("/api/users").post(createUser)
     
     // Additional route for DB test
     rootApp.route("/db-test").get(async (req, res) => {
@@ -78,6 +82,12 @@ async function startServer() {
         logger.info("Testing database connection...");
         await testConnection();
         logger.info("Database connected successfully.");
+
+        // Initialize TypeORM Data Source
+        await AppDataSource.initialize();
+        logger.info("TypeORM Data Source has been initialized.");
+
+        // Start Express servers    
 
         rootApp.listen(ROOT_APP_PORT, "0.0.0.0", () => {
             logger.info(`Root app running at http://0.0.0.0:${ROOT_APP_PORT}`);

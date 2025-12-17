@@ -11,12 +11,7 @@ export const AppDataSource = new DataSource({
     password: process.env.DB_PASSWORD,
     port: parseInt(process.env.DB_PORT),
     database: process.env.DB_NAME,
-    ssl: true,
-    extra: {
-      ssl : {
-          rejectUnauthorized:false
-      }
-    },
+    
     entities: [
         Course,
         Lesson,

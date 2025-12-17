@@ -1,5 +1,7 @@
 
 import * as dotenv from "dotenv";
+import { randomBytesAsync } from '../utils';
+
 
 const result = dotenv.config();
 
@@ -13,6 +15,7 @@ import {Lesson} from "./lesson";
 import {User} from "./user";
 import {calculatePasswordHash} from "../utils";
 
+
 async function populateDb() {
 
     await AppDataSource.initialize();
@@ -24,6 +27,8 @@ async function populateDb() {
     const courseRepository = AppDataSource.getRepository(Course);
 
     const lessonsRepository = AppDataSource.getRepository(Lesson);
+
+    const userRepository = AppDataSource.getRepository(User);
 
     for (let courseData of courses) {
 
@@ -61,9 +66,8 @@ async function populateDb() {
                 pictureUrl,
                 isAdmin,
                 passwordSalt,
-                passwordHash: await calculatePasswordHash(
-                    plainTextPassword, passwordSalt)
-            });
+                passwordHash: await calculatePasswordHash(plainTextPassword, passwordSalt)  
+            })
 
         await AppDataSource.manager.save(user);
 
@@ -77,7 +81,11 @@ async function populateDb() {
         .createQueryBuilder()
         .getCount();
 
-    console.log(` Data Inserted - courses ${totalCourses}, lessons ${totalLessons}`);
+    const totalUsers = await userRepository
+        .createQueryBuilder()
+        .getCount();    
+        
+    console.log(` Data Inserted - courses ${totalCourses}, lessons ${totalLessons}, users ${totalUsers}`);
 
 }
 

@@ -1,4 +1,4 @@
-import { CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 
 @Entity({
@@ -9,6 +9,20 @@ export class User {
     @PrimaryGeneratedColumn()
     id: number;
 
+    @Column({unique: true})
+    email:string;
+
+    @Column()
+    passwordHash:string;
+
+    @Column()
+    passwordSalt:string;
+
+    @Column({nullable: true})       
+    pictureUrl: string;
+
+    @Column({default: false})
+    isAdmin: boolean;
 
     @CreateDateColumn({ type: 'timestamp' })
     createdAt: Date;

@@ -53,22 +53,23 @@ async function deleteDb() {
 
     await AppDataSource.initialize();
 
-    console.log(`Database connection ready.`);
+    console.log(`Connected Database successfully.`);
 
-    console.log(`Clearing LESSONS table.`);
+    // console.log(`Delete data in Lesson table.`);
 
-    await AppDataSource.getRepository(Lesson).delete({});
+    // await AppDataSource.getRepository(Lesson).delete({});
 
-    console.log(`Clearing COURSES table.`);
+    // console.log(`Delete data in Course table.`);
+    // await AppDataSource.getRepository(Course).delete({});
 
-    await AppDataSource.getRepository(Course).delete({});
+    // console.log(`Delete data in User table.`);
 
-    console.log(`Clearing USERS table.`);
+    // await AppDataSource.getRepository(User).delete({});
 
-    await AppDataSource.getRepository(User).delete({});
+        await AppDataSource.query('TRUNCATE TABLE "LESSONS", "COURSES", "USERS" CASCADE');
+    console.log(`All data deleted successfully.`);
 
 }
-
 
 deleteDb()
     .then(() => {
