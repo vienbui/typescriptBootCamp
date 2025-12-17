@@ -1,85 +1,99 @@
-import * as dotenv from 'dotenv';
+
+import * as dotenv from "dotenv";
+import { randomBytesAsync } from '../utils';
+
+
 const result = dotenv.config();
 
-import { COURSES } from './db-data';
-import { pool } from '../database';
+import "reflect-metadata";
+
+import {COURSES, USERS} from "./db-data";
+import {AppDataSource} from "../data-source";
+import { Course } from "./course";
+import {DeepPartial} from "typeorm";
+import {Lesson} from "./lesson";
+import {User} from "./user";
+import {calculatePasswordHash} from "../utils";
+
 
 async function populateDb() {
-    const client = await pool.connect();
 
-    try {
-        console.log("Database connection ready");
+    await AppDataSource.initialize();
 
-        for (let courseId in COURSES) {
-            const course = COURSES[courseId];
+    console.log(`Database connection ready.`);
 
-            // Insert Course vào DB
-            const courseQuery = `
-                INSERT INTO "Course"
-                ("id", "seqNo", "title", "url", "iconUrl", "longDescription", "category", "createdAt", "updatedAt")
-                VALUES ($1,$2,$3,$4,$5,$6,$7, NOW(), NOW())
-                RETURNING id`;
+    const courses = Object.values(COURSES) as DeepPartial<Course>[];
 
-            const courseValues = [
-                course.id,
-                course.seqNo,
-                course.title,
-                course.url,
-                course.iconUrl,
-                course.longDescription,
-                course.category
-            ];
+    const courseRepository = AppDataSource.getRepository(Course);
 
-            const resCourse = await client.query(courseQuery, courseValues);
-            const createdCourseId = resCourse.rows[0].id;
+    const lessonsRepository = AppDataSource.getRepository(Lesson);
 
-            console.log(`Inserted Course with id: ${createdCourseId}`);
+    const userRepository = AppDataSource.getRepository(User);
 
-            // Insert Lessons vào DB
-            for (let lesson of course.lessons) {
-                const lessonQuery = `
-                    INSERT INTO "Lesson"
-                    ("id", "title", "duration", "seqNo", "courseId", "createdAt", "updatedAt")
-                    VALUES ($1,$2,$3,$4,$5, NOW(), NOW())`;
+    for (let courseData of courses) {
 
-                const lessonValues = [
-                    lesson.id,
-                    lesson.title,
-                    lesson.duration,
-                    lesson.seqNo,
-                    createdCourseId
-                ];
+        console.log(`Inserting course ${courseData.title}`);
 
-                await client.query(lessonQuery, lessonValues);
-                console.log(`Inserted lesson with id: ${lesson.id}`);
-            }
+        const course = courseRepository.create(courseData);
+
+        await courseRepository.save(course);
+
+        for (let lessonData of courseData.lessons) {
+
+            console.log(`Inserting lesson ${lessonData.title}`);
+
+            const lesson = lessonsRepository.create(lessonData);
+
+            lesson.course = course;
+
+            await lessonsRepository.save(lesson);
         }
-        // Đếm số lượng Courses
-const courseCountQuery = 'SELECT COUNT(*) FROM "Course";';
-const courseCountResult = await client.query(courseCountQuery);
-const totalCourses = courseCountResult.rows[0].count;
 
-// Đếm số lượng Lessons
-const lessonCountQuery = 'SELECT COUNT(*) FROM "Lesson";';
-const lessonCountResult = await client.query(lessonCountQuery);
-const totalLessons = lessonCountResult.rows[0].count;
-
-console.log(`Data Inserted - courses ${totalCourses}, lessons ${totalLessons}`);
-
-
-    } catch (err) {
-        console.error('Error populating database:', err);
-    } finally {
-        client.release();
     }
+
+    const users = Object.values(USERS) as any[];
+
+    for (let userData of users) {
+
+        console.log(`Inserting user: ${userData}`);
+
+        const {email, pictureUrl, isAdmin, passwordSalt, plainTextPassword} = userData;
+
+        const user = AppDataSource
+            .getRepository(User)
+            .create({
+                email,
+                pictureUrl,
+                isAdmin,
+                passwordSalt,
+                passwordHash: await calculatePasswordHash(plainTextPassword, passwordSalt)  
+            })
+
+        await AppDataSource.manager.save(user);
+
+    }
+
+    const totalCourses = await courseRepository
+        .createQueryBuilder()
+        .getCount();
+
+    const totalLessons = await lessonsRepository
+        .createQueryBuilder()
+        .getCount();
+
+    const totalUsers = await userRepository
+        .createQueryBuilder()
+        .getCount();    
+        
+    console.log(` Data Inserted - courses ${totalCourses}, lessons ${totalLessons}, users ${totalUsers}`);
+
 }
 
 populateDb()
     .then(() => {
-        console.log('Database populated successfully');
+        console.log(`Finished populating database, exiting!`);
         process.exit(0);
     })
-    .catch((err) => {
-        console.error('Unexpected Error populating database:', err);
-        process.exit(1);
+    .catch(err => {
+        console.error(`Error populating database.`, err);
     });

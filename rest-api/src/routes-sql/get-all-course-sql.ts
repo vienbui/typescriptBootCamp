@@ -2,7 +2,7 @@
 import {Router,Response,Request, NextFunction} from "express";
 import {logger} from "../logger";
 import { pool } from "../database";
-import { catchAsync } from '../ultils'; 
+import { catchAsync } from '../utils'; 
 
 const router = Router();
 

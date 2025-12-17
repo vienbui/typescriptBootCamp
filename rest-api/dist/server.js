@@ -39,17 +39,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var dotenv = require("dotenv");
 var express = require("express");
 var cors = require("cors");
-var root_1 = require("./routes/root");
-var get_all_course_1 = require("./routes/get-all-course");
-var get_courses_with_lessons_1 = require("./routes/get-courses-with-lessons");
+var root_sql_1 = require("./routes-sql/root-sql");
+var get_all_course_sql_1 = require("./routes-sql/get-all-course-sql");
+var get_courses_with_lessons_sql_1 = require("./routes-sql/get-courses-with-lessons-sql");
 var database_1 = require("./database");
 var logger_1 = require("./logger");
 var default_error_handler_1 = require("./middleware/default-error-handler");
-var find_course_by_url_1 = require("./routes/find-course-by-url");
-var find_lesson_for_course_1 = require("./routes/find-lesson-for-course");
-var update_course_1 = require("./routes/update-course");
-var create_course_1 = require("./routes/create-course");
-var delete_course_1 = require("./routes/delete-course");
+var find_course_by_url_sql_1 = require("./routes-sql/find-course-by-url-sql");
+var find_lesson_for_course_sql_1 = require("./routes-sql/find-lesson-for-course-sql");
+var update_course_sql_1 = require("./routes-sql/update-course-sql");
+var create_course_sql_1 = require("./routes-sql/create-course-sql");
+var delete_course_sql_1 = require("./routes-sql/delete-course-sql");
+var create_user_1 = require("./root/create-user");
+var data_source_1 = require("./data-source");
 var result = dotenv.config();
 if (result.error) {
     logger_1.logger.error('Error loading environment variables, aborting.');
@@ -65,16 +67,17 @@ function setupExpress() {
     rootApp.use(cors({ origin: true }));
     courseApp.use(cors({ origin: true }));
     // Routes
-    rootApp.route("/").get(root_1.root);
-    courseApp.route("/api/courses").get(get_all_course_1.getAllCourses);
-    courseApp.route("/api/courses-lessons").get(get_courses_with_lessons_1.getCoursesWithLessons);
-    courseApp.route("/api/courses/:courseUrl").get(find_course_by_url_1.findCourseByUrl);
-    courseApp.route("/api/courses/:courseId/lessons").get(find_lesson_for_course_1.findLessonForCourse);
-    courseApp.route("/api/courses/:courseId").patch(update_course_1.updateCourse);
+    rootApp.route("/").get(root_sql_1.root);
+    courseApp.route("/api/courses").get(get_all_course_sql_1.getAllCourses);
+    courseApp.route("/api/courses-lessons").get(get_courses_with_lessons_sql_1.getCoursesWithLessons);
+    courseApp.route("/api/courses/:courseUrl").get(find_course_by_url_sql_1.findCourseByUrl);
+    courseApp.route("/api/courses/:courseId/lessons").get(find_lesson_for_course_sql_1.findLessonForCourse);
+    courseApp.route("/api/courses/:courseId").patch(update_course_sql_1.updateCourse);
     //less 123
-    courseApp.route("/api/courses/").post(create_course_1.createCourse);
+    courseApp.route("/api/courses/").post(create_course_sql_1.createCourse);
     //less 125 - delete
-    courseApp.route("/api/courses/:courseId").delete(delete_course_1.deleteCourse);
+    courseApp.route("/api/courses/:courseId").delete(delete_course_sql_1.deleteCourse);
+    courseApp.route("/api/users").post(create_user_1.createUser);
     // Additional route for DB test
     rootApp.route("/db-test").get(function (req, res) { return __awaiter(_this, void 0, void 0, function () {
         var result_1, error_1;
@@ -115,25 +118,32 @@ function startServer() {
                     process.on("unhandledRejection", function (reason) { return logger_1.logger.error("unhandledRejection:", reason); });
                     _a.label = 1;
                 case 1:
-                    _a.trys.push([1, 3, , 4]);
+                    _a.trys.push([1, 4, , 5]);
                     logger_1.logger.info("Testing database connection...");
                     return [4 /*yield*/, (0, database_1.testConnection)()];
                 case 2:
                     _a.sent();
                     logger_1.logger.info("Database connected successfully.");
+                    // Initialize TypeORM Data Source
+                    return [4 /*yield*/, data_source_1.AppDataSource.initialize()];
+                case 3:
+                    // Initialize TypeORM Data Source
+                    _a.sent();
+                    logger_1.logger.info("TypeORM Data Source has been initialized.");
+                    // Start Express servers    
                     rootApp.listen(ROOT_APP_PORT, "0.0.0.0", function () {
                         logger_1.logger.info("Root app running at http://0.0.0.0:".concat(ROOT_APP_PORT));
                     });
                     courseApp.listen(COURSE_APP_PORT, "0.0.0.0", function () {
                         logger_1.logger.info("Course app running at http://0.0.0.0:".concat(COURSE_APP_PORT));
                     });
-                    return [3 /*break*/, 4];
-                case 3:
+                    return [3 /*break*/, 5];
+                case 4:
                     error_2 = _a.sent();
                     logger_1.logger.error("Failed to start servers:", error_2);
                     process.exit(1);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+                    return [3 /*break*/, 5];
+                case 5: return [2 /*return*/];
             }
         });
     });

@@ -1,5 +1,5 @@
 
-export const COURSES = {
+export const COURSES: any = {
 
     20: {
         id: 20,

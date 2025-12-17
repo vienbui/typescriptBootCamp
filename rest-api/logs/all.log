@@ -1927,3 +1927,195 @@
     "level": "debug",
     "message": "Attempting to delete course with ID 23"
 }
+{
+    "level": "info",
+    "message": "Testing database connection..."
+}
+{
+    "level": "info",
+    "message": "Database connected successfully."
+}
+{
+    "level": "info",
+    "message": "Root app running at http://0.0.0.0:3000"
+}
+{
+    "level": "info",
+    "message": "Course app running at http://0.0.0.0:9000"
+}
+{
+    "level": "info",
+    "message": "Testing database connection..."
+}
+{
+    "level": "info",
+    "message": "Database connected successfully."
+}
+{
+    "level": "info",
+    "message": "Root app running at http://0.0.0.0:3000"
+}
+{
+    "level": "info",
+    "message": "Course app running at http://0.0.0.0:9000"
+}
+{
+    "level": "debug",
+    "message": "Called createUser()"
+}
+{
+    "level": "error",
+    "message": "Error calling createUser()"
+}
+{
+    "level": "error",
+    "message": "Default error handler triggered; reason: undefined"
+}
+{
+    "level": "debug",
+    "message": "Called createUser()"
+}
+{
+    "level": "error",
+    "message": "Error calling createUser()"
+}
+{
+    "level": "error",
+    "message": "Default error handler triggered; reason: undefined"
+}
+{
+    "level": "info",
+    "message": "/db-test hit"
+}
+{
+    "level": "info",
+    "message": "Testing database connection..."
+}
+{
+    "level": "info",
+    "message": "Database connected successfully."
+}
+{
+    "level": "info",
+    "message": "Root app running at http://0.0.0.0:3000"
+}
+{
+    "level": "info",
+    "message": "Course app running at http://0.0.0.0:9000"
+}
+{
+    "level": "debug",
+    "message": "Called createUser()"
+}
+{
+    "level": "error",
+    "message": "Error calling createUser() No metadata for \"User\" was found.",
+    "stack": "EntityMetadataNotFoundError: No metadata for \"User\" was found.\n    at DataSource.getMetadata (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/typeorm/data-source/DataSource.js:305:19)\n    at get metadata [as metadata] (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/typeorm/repository/Repository.js:16:40)\n    at Repository.create (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/typeorm/repository/Repository.js:53:41)\n    at /Users/vbui/Documents/Auto_repo/myTypescript/rest-api/dist/root/create-user.js:61:46\n    at step (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/dist/root/create-user.js:33:23)\n    at Object.next (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/dist/root/create-user.js:14:53)\n    at fulfilled (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/dist/root/create-user.js:5:58)"
+}
+{
+    "level": "error",
+    "message": "Default error handler triggered; reason: No metadata for \"User\" was found.",
+    "stack": "EntityMetadataNotFoundError: No metadata for \"User\" was found.\n    at DataSource.getMetadata (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/typeorm/data-source/DataSource.js:305:19)\n    at get metadata [as metadata] (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/typeorm/repository/Repository.js:16:40)\n    at Repository.create (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/typeorm/repository/Repository.js:53:41)\n    at /Users/vbui/Documents/Auto_repo/myTypescript/rest-api/dist/root/create-user.js:61:46\n    at step (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/dist/root/create-user.js:33:23)\n    at Object.next (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/dist/root/create-user.js:14:53)\n    at fulfilled (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/dist/root/create-user.js:5:58)"
+}
+{
+    "level": "error",
+    "message": "Response was already being writeen, delegating to built-in Express error handler."
+}
+{
+    "level": "debug",
+    "message": "Called createUser()"
+}
+{
+    "level": "error",
+    "message": "Error calling createUser() No metadata for \"User\" was found.",
+    "stack": "EntityMetadataNotFoundError: No metadata for \"User\" was found.\n    at DataSource.getMetadata (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/typeorm/data-source/DataSource.js:305:19)\n    at get metadata [as metadata] (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/typeorm/repository/Repository.js:16:40)\n    at Repository.create (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/typeorm/repository/Repository.js:53:41)\n    at /Users/vbui/Documents/Auto_repo/myTypescript/rest-api/dist/root/create-user.js:61:46\n    at step (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/dist/root/create-user.js:33:23)\n    at Object.next (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/dist/root/create-user.js:14:53)\n    at fulfilled (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/dist/root/create-user.js:5:58)"
+}
+{
+    "level": "error",
+    "message": "Default error handler triggered; reason: No metadata for \"User\" was found.",
+    "stack": "EntityMetadataNotFoundError: No metadata for \"User\" was found.\n    at DataSource.getMetadata (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/typeorm/data-source/DataSource.js:305:19)\n    at get metadata [as metadata] (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/typeorm/repository/Repository.js:16:40)\n    at Repository.create (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/typeorm/repository/Repository.js:53:41)\n    at /Users/vbui/Documents/Auto_repo/myTypescript/rest-api/dist/root/create-user.js:61:46\n    at step (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/dist/root/create-user.js:33:23)\n    at Object.next (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/dist/root/create-user.js:14:53)\n    at fulfilled (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/dist/root/create-user.js:5:58)"
+}
+{
+    "level": "error",
+    "message": "Response was already being writeen, delegating to built-in Express error handler."
+}
+{
+    "level": "debug",
+    "message": "Called createUser()"
+}
+{
+    "level": "error",
+    "message": "Error calling createUser() No metadata for \"User\" was found.",
+    "stack": "EntityMetadataNotFoundError: No metadata for \"User\" was found.\n    at DataSource.getMetadata (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/typeorm/data-source/DataSource.js:305:19)\n    at get metadata [as metadata] (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/typeorm/repository/Repository.js:16:40)\n    at Repository.create (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/typeorm/repository/Repository.js:53:41)\n    at /Users/vbui/Documents/Auto_repo/myTypescript/rest-api/dist/root/create-user.js:61:46\n    at step (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/dist/root/create-user.js:33:23)\n    at Object.next (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/dist/root/create-user.js:14:53)\n    at fulfilled (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/dist/root/create-user.js:5:58)"
+}
+{
+    "level": "error",
+    "message": "Default error handler triggered; reason: No metadata for \"User\" was found.",
+    "stack": "EntityMetadataNotFoundError: No metadata for \"User\" was found.\n    at DataSource.getMetadata (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/typeorm/data-source/DataSource.js:305:19)\n    at get metadata [as metadata] (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/typeorm/repository/Repository.js:16:40)\n    at Repository.create (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/typeorm/repository/Repository.js:53:41)\n    at /Users/vbui/Documents/Auto_repo/myTypescript/rest-api/dist/root/create-user.js:61:46\n    at step (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/dist/root/create-user.js:33:23)\n    at Object.next (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/dist/root/create-user.js:14:53)\n    at fulfilled (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/dist/root/create-user.js:5:58)"
+}
+{
+    "level": "error",
+    "message": "Response was already being writeen, delegating to built-in Express error handler."
+}
+{
+    "level": "info",
+    "message": "Testing database connection..."
+}
+{
+    "level": "info",
+    "message": "Database connected successfully."
+}
+{
+    "level": "info",
+    "message": "Root app running at http://0.0.0.0:3000"
+}
+{
+    "level": "info",
+    "message": "Course app running at http://0.0.0.0:9000"
+}
+{
+    "level": "debug",
+    "message": "Called createUser()"
+}
+{
+    "level": "error",
+    "message": "Error calling createUser() No metadata for \"User\" was found.",
+    "stack": "EntityMetadataNotFoundError: No metadata for \"User\" was found.\n    at DataSource.getMetadata (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/typeorm/data-source/DataSource.js:305:19)\n    at get metadata [as metadata] (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/typeorm/repository/Repository.js:16:40)\n    at Repository.create (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/typeorm/repository/Repository.js:53:41)\n    at /Users/vbui/Documents/Auto_repo/myTypescript/rest-api/dist/root/create-user.js:61:46\n    at step (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/dist/root/create-user.js:33:23)\n    at Object.next (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/dist/root/create-user.js:14:53)\n    at fulfilled (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/dist/root/create-user.js:5:58)"
+}
+{
+    "level": "error",
+    "message": "Default error handler triggered; reason: No metadata for \"User\" was found.",
+    "stack": "EntityMetadataNotFoundError: No metadata for \"User\" was found.\n    at DataSource.getMetadata (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/typeorm/data-source/DataSource.js:305:19)\n    at get metadata [as metadata] (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/typeorm/repository/Repository.js:16:40)\n    at Repository.create (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/node_modules/typeorm/repository/Repository.js:53:41)\n    at /Users/vbui/Documents/Auto_repo/myTypescript/rest-api/dist/root/create-user.js:61:46\n    at step (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/dist/root/create-user.js:33:23)\n    at Object.next (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/dist/root/create-user.js:14:53)\n    at fulfilled (/Users/vbui/Documents/Auto_repo/myTypescript/rest-api/dist/root/create-user.js:5:58)"
+}
+{
+    "level": "error",
+    "message": "Response was already being writeen, delegating to built-in Express error handler."
+}
+{
+    "level": "info",
+    "message": "Testing database connection..."
+}
+{
+    "level": "info",
+    "message": "Database connected successfully."
+}
+{
+    "level": "info",
+    "message": "TypeORM Data Source has been initialized."
+}
+{
+    "level": "info",
+    "message": "Root app running at http://0.0.0.0:3000"
+}
+{
+    "level": "info",
+    "message": "Course app running at http://0.0.0.0:9000"
+}
+{
+    "level": "debug",
+    "message": "Called createUser()"
+}
+{
+    "level": "debug",
+    "message": "User created successfully: newuser@example.com"
+}
