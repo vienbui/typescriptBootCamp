@@ -15,6 +15,8 @@ import { createCourse } from "./routes-sql/create-course-sql";
 import { deleteCourse } from "./routes-sql/delete-course-sql";
 import { createUser } from "./root/create-user";
 import { login } from "./root/login";
+import { checkIfAuthenticated } from "./middleware/authentication-middleware";
+import { checkIfAdmin } from "./middleware/admin-only-middleware";
 
 
 const result = dotenv.config();
@@ -38,22 +40,21 @@ function setupExpress() {
     // Routes
     rootApp.route("/").get(root);
 
-    courseApp.route("/api/courses").get(getAllCourses);
-    courseApp.route("/api/courses-lessons").get(getCoursesWithLessons);
+    courseApp.route("/api/courses").get(checkIfAuthenticated,getAllCourses);
+    courseApp.route("/api/courses-lessons").get(checkIfAuthenticated, getCoursesWithLessons);
 
-    courseApp.route("/api/courses/:courseUrl").get(findCourseByUrl);
+    courseApp.route("/api/courses/:courseUrl").get(checkIfAuthenticated, findCourseByUrl);
 
-    courseApp.route("/api/courses/:courseId/lessons").get(findLessonForCourse);
+    courseApp.route("/api/courses/:courseId/lessons").get(checkIfAuthenticated, findLessonForCourse);
 
-    courseApp.route("/api/courses/:courseId").patch(updateCourse);
-
+    courseApp.route("/api/courses/:courseId").patch(checkIfAuthenticated, updateCourse);
     //less 123
-    courseApp.route("/api/courses/").post(createCourse);
+    courseApp.route("/api/courses/").post(checkIfAuthenticated, createCourse);
 
     //less 125 - delete
-    courseApp.route("/api/courses/:courseId").delete(deleteCourse)
+    courseApp.route("/api/courses/:courseId").delete(checkIfAuthenticated, deleteCourse)
 
-    courseApp.route("/api/users").post(createUser)
+    courseApp.route("/api/users").post(checkIfAuthenticated, checkIfAdmin, createUser)
 
     courseApp.route("/api/login").post(login)
     

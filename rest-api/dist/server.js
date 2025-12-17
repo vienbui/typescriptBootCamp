@@ -53,6 +53,8 @@ var create_course_sql_1 = require("./routes-sql/create-course-sql");
 var delete_course_sql_1 = require("./routes-sql/delete-course-sql");
 var create_user_1 = require("./root/create-user");
 var login_1 = require("./root/login");
+var authentication_middleware_1 = require("./middleware/authentication-middleware");
+var admin_only_middleware_1 = require("./middleware/admin-only-middleware");
 var result = dotenv.config();
 if (result.error) {
     logger_1.logger.error('Error loading environment variables, aborting.');
@@ -69,16 +71,16 @@ function setupExpress() {
     courseApp.use(cors({ origin: true }));
     // Routes
     rootApp.route("/").get(root_sql_1.root);
-    courseApp.route("/api/courses").get(get_all_course_sql_1.getAllCourses);
-    courseApp.route("/api/courses-lessons").get(get_courses_with_lessons_sql_1.getCoursesWithLessons);
-    courseApp.route("/api/courses/:courseUrl").get(find_course_by_url_sql_1.findCourseByUrl);
-    courseApp.route("/api/courses/:courseId/lessons").get(find_lesson_for_course_sql_1.findLessonForCourse);
-    courseApp.route("/api/courses/:courseId").patch(update_course_sql_1.updateCourse);
+    courseApp.route("/api/courses").get(authentication_middleware_1.checkIfAuthenticated, get_all_course_sql_1.getAllCourses);
+    courseApp.route("/api/courses-lessons").get(authentication_middleware_1.checkIfAuthenticated, get_courses_with_lessons_sql_1.getCoursesWithLessons);
+    courseApp.route("/api/courses/:courseUrl").get(authentication_middleware_1.checkIfAuthenticated, find_course_by_url_sql_1.findCourseByUrl);
+    courseApp.route("/api/courses/:courseId/lessons").get(authentication_middleware_1.checkIfAuthenticated, find_lesson_for_course_sql_1.findLessonForCourse);
+    courseApp.route("/api/courses/:courseId").patch(authentication_middleware_1.checkIfAuthenticated, update_course_sql_1.updateCourse);
     //less 123
-    courseApp.route("/api/courses/").post(create_course_sql_1.createCourse);
+    courseApp.route("/api/courses/").post(authentication_middleware_1.checkIfAuthenticated, create_course_sql_1.createCourse);
     //less 125 - delete
-    courseApp.route("/api/courses/:courseId").delete(delete_course_sql_1.deleteCourse);
-    courseApp.route("/api/users").post(create_user_1.createUser);
+    courseApp.route("/api/courses/:courseId").delete(authentication_middleware_1.checkIfAuthenticated, delete_course_sql_1.deleteCourse);
+    courseApp.route("/api/users").post(authentication_middleware_1.checkIfAuthenticated, admin_only_middleware_1.checkIfAdmin, create_user_1.createUser);
     courseApp.route("/api/login").post(login_1.login);
     // Additional route for DB test
     rootApp.route("/db-test").get(function (req, res) { return __awaiter(_this, void 0, void 0, function () {
